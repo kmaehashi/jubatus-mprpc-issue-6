@@ -21,8 +21,10 @@ classifier プロキシを立ち上げる
 ---------------------------------------------------------------------------
 
 ```
-$ jubaclassifier_proxy --rpc-port 9199 --interconnect_timeout 3 --pool_size 1 --pool_expire 60 &
+$ jubaclassifier_proxy -c 1 --rpc-port 9199 --interconnect_timeout 3 --pool_size 1 --pool_expire 30 &
 ```
+
+セッションプールはスレッドごとに存在するので、-c 1 を指定。
 
 セッションプールの中のコネクションをタイムアウトさせる
 ---------------------------------------------------------------------------
@@ -41,5 +43,4 @@ $ ./client-train.py
 $ ./client-classify.py
 ```
 
-60 秒間待たされるはず、だったのだが…待たされない
-
+3 秒間待たされた後、リクエストが失敗する。
